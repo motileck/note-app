@@ -1,26 +1,98 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+
+import '../src/styles/App.css'
+import PostList from "./components/PostList";
+import PostForm from "./components/PostForm";
+import PostFilter from "./components/PostFilter";
+import MyModal from "./components/UI/ModalWindow/MyModal";
+import MyButton from "./components/UI/button/MyButton";
+import {usePosts} from "./hooks/usePost";
+import EditForm from "./components/EditForm";
+import {Filter, Post} from "./types/types";
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [posts, setPosts] = useState<Post[]>([]);
+    const [filter, setFilter] = useState<Filter>({sort: null, search: ''});
+    const [modal, setModal] = useState(false);
+    const [modalEdit, setModalEdit] = useState(false);
+    const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.search);
+    const [postForEdit, setPostForEdit] = useState({});
+
+
+    function createPost(newPost: Post) {
+        setPosts([...posts, newPost])
+        setModal(false)
+    }
+
+    function removePost(post : Post) {
+        const filteredPosts = posts.filter(p => p.id !== post.id);
+        setPosts(filteredPosts);
+    }
+
+    function savePosts() {
+        localStorage.setItem('posts', JSON.stringify(posts));
+    }
+
+    function loadPosts() {
+        const loadedPosts = JSON.parse(localStorage.getItem('posts')|| '[]');
+        setPosts([...loadedPosts]);
+    }
+
+    function editPost(post : Post):void {
+        const postIndex = posts.findIndex(p => p.id === post.id);
+        if (postIndex !== -1) {
+            const copyPosts = [...posts];
+            copyPosts[postIndex] = post;
+            setPosts([...copyPosts]);
+            setModalEdit(false);
+        }
+    }
+
+    function openEditModal(post : Post):void {
+        setPostForEdit(post);
+        setModalEdit(true);
+    }
+
+
+    return (
+        <div className="App">
+            <MyButton onClick={savePosts}>Save</MyButton>
+            <MyButton onClick={loadPosts}>Load</MyButton>
+            <MyButton style={{marginTop: 15}} onClick={() => setModal(true)}>Создать заметку</MyButton>
+            <MyModal
+                visible={modal}
+                setVisible={setModal}
+            >
+                <PostForm create={createPost}/>
+            </MyModal>
+
+            <MyModal
+                visible={modalEdit}
+                setVisible={setModalEdit}
+            >
+                <EditForm initial={postForEdit} edit={editPost}/>
+            </MyModal>
+
+
+            <PostFilter
+                filter={filter}
+                setFilter={setFilter}
+            />
+
+            <PostList
+                edit={openEditModal}
+                remove={removePost}
+                posts={sortedAndSearchedPosts}
+                title="Заметки"
+                visible={modal}
+                setVisible={setModal}
+            />
+
+
+        </div>
+    );
 }
 
 export default App;
