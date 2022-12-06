@@ -18,7 +18,7 @@ function App() {
     const [modal, setModal] = useState(false);
     const [modalEdit, setModalEdit] = useState(false);
     const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.search);
-    const [postForEdit, setPostForEdit] = useState({});
+    const [postForEdit, setPostForEdit] = useState<Post | null>(null);
 
 
     function createPost(newPost: Post) {

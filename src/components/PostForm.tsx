@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 
-const PostForm = ({create}) => {
+const PostForm: React.FC<{create:any}> = ({create}) => {
     const [post, setPost] = useState({
         title: '',
         body: '',

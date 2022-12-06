@@ -1,6 +1,14 @@
 import React from 'react';
 import PostItem from "./PostItem";
-const PostList = ({posts, title, remove, visible, setVisible, edit}) => {
+import {Post} from "../types/types";
+const PostList: React.FC<{
+    posts:Post[],
+    title:string,
+    remove:any,
+    visible:any,
+    setVisible:any,
+    edit:any,
+}>= ({posts, title, remove, visible, setVisible, edit}) => {
     if (!posts.length) {
         return <h1 style={{textAlign: "center"}}>Заметки не были найдены</h1>
     }

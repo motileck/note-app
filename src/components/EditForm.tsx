@@ -5,22 +5,22 @@ import {Post} from "../types/types";
 
 
 
-const EditForm = ({edit, initial} : {edit:void, initial:Post}) => {
+const EditForm: React.FC<{edit:any, initial: Post | null}> = ({edit, initial}) => {
 
     useEffect(() => {
         setPost({
-            title: initial.title || '',
-            body: initial.body || '',
-            tag: initial.tag || '',
-            id : initial.id || ''
+            title: initial?.title || '',
+            body: initial?.body || '',
+            tag: initial?.tag || '',
+            id : initial?.id || ''
         })
     }, [initial])
 
     const [post, setPost] = useState<Post>({
-        title: initial.title || '',
-        body: initial.body || '',
-        tag: initial.tag || '',
-        id : initial.id || ''
+        title: initial?.title || '',
+        body: initial?.body || '',
+        tag: initial?.tag || '',
+        id : initial?.id || ''
     });
 
     function editPost(e : ChangeEvent<HTMLInputElement>) {
@@ -28,7 +28,7 @@ const EditForm = ({edit, initial} : {edit:void, initial:Post}) => {
 
         const newPost = {
             ...post,
-            id: initial.id,
+            id: initial?.id,
         }
         edit(newPost);
         setPost({title: '', body: '', tag: '', id: ''})

@@ -1,7 +1,9 @@
-import React, {} from "react";
+import React from "react";
 import MyButton from "./UI/button/MyButton";
+import {Post} from "../types/types";
 
-const PostItem = (props) => {
+
+const PostItem = (props:any) => {
 
     return (
         <div className="post">
