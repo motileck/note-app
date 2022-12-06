@@ -1,6 +1,5 @@
 import React from 'react';
 import PostItem from "./PostItem";
-
 const PostList = ({posts, title, remove, visible, setVisible, edit}) => {
     if (!posts.length) {
         return <h1 style={{textAlign: "center"}}>Заметки не были найдены</h1>

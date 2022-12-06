@@ -1,8 +1,9 @@
 import React from 'react';
 import MyInput from "./UI/input/MyInput";
 import MySelect from "./UI/Select/MySelect";
+import {Filter} from "../types/types";
 
-const PostFilter = ({filter, setFilter}) => {
+const PostFilter = ({filter, setFilter} : {filter:Filter, setFilter:void}) => {
     return (
         <div>
             <MyInput

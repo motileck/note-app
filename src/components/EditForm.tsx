@@ -5,7 +5,7 @@ import {Post} from "../types/types";
 
 
 
-const EditForm = ({edit, initial}) => {
+const EditForm = ({edit, initial} : {edit:void, initial:Post}) => {
 
     useEffect(() => {
         setPost({
