@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import PostItem from "./PostItem";
 import {Post} from "../types/types";
 const PostList: React.FC<{
     posts:Post[],
     title:string,
-    remove:any,
-    visible:any,
-    setVisible:any,
-    edit:any,
+    remove:(post: Post) => void,
+    visible:boolean,
+    setVisible:Dispatch<SetStateAction<boolean>>,
+    edit:(post: Post) => void,
 }>= ({posts, title, remove, visible, setVisible, edit}) => {
     if (!posts.length) {
         return <h1 style={{textAlign: "center"}}>Заметки не были найдены</h1>

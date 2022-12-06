@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {} from 'react';
 import classes from './MyButton.module.css';
 
 
-const MyButton = ({children, ...props})  => {
+
+
+const MyButton: React.FC<{children:string, onClick:any}> = ({children, onClick})  => {
     return (
-        <button {...props} className={classes.myBtn}>
+        <button onClick = {onClick} className={classes.myBtn}>
             {children}
         </button>
     );

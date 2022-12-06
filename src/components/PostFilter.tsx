@@ -7,18 +7,18 @@ const PostFilter:React.FC<{filter:Filter, setFilter:any}> = ({filter, setFilter}
     return (
         <div>
             <MyInput
-                value:string={filter.search}
+                value={filter.search}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setFilter({...filter, search: e.target.value})}
                 placeholder="поиск"
             />
             <MySelect
-                value:string={filter.sort}
+                value={filter.sort}
                 onChange={(selectedSort:any) => setFilter({...filter, sort: selectedSort})}
                 defaultValue="Сортировка по"
                 options={
                     [{value: 'title', name: 'По названию'},
                         {value: 'body', name: 'По описанию'},
-                        {value: 'tag', name: 'По Тегу'}]
+                        ]
                 }
             />
         </div>

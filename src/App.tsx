@@ -50,7 +50,7 @@ function App() {
         }
     }
 
-    function openEditModal(post : Post):void {
+    function openEditModal(post : Post) {
         setPostForEdit(post);
         setModalEdit(true);
     }
@@ -60,7 +60,7 @@ function App() {
         <div className="App">
             <MyButton onClick={savePosts}>Save</MyButton>
             <MyButton onClick={loadPosts}>Load</MyButton>
-            <MyButton style={{marginTop: 15}} onClick={() => setModal(true)}>Создать заметку</MyButton>
+            <MyButton onClick={() => setModal(true)}>Создать заметку</MyButton>
             <MyModal
                 visible={modal}
                 setVisible={setModal}

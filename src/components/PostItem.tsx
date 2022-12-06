@@ -1,6 +1,6 @@
 import React from "react";
 import MyButton from "./UI/button/MyButton";
-import {Post} from "../types/types";
+
 
 
 const PostItem = (props:any) => {

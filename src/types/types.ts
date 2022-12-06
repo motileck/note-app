@@ -1,3 +1,5 @@
+import React, {ReactNode} from "react";
+
 export interface Post{
     title: string,
     body: string,
@@ -10,7 +12,9 @@ export interface Filter{
     sort: keyof Post | null
 }
 
-
+export interface buttoProps{
+    onClick: ()=> void,
+}
 
 
 

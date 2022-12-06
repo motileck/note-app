@@ -5,7 +5,7 @@ import {Post} from "../types/types";
 
 
 
-const EditForm: React.FC<{edit:any, initial: Post | null}> = ({edit, initial}) => {
+const EditForm: React.FC<{edit:Function, initial: Post | null}> = ({edit, initial}) => {
 
     useEffect(() => {
         setPost({
@@ -23,7 +23,7 @@ const EditForm: React.FC<{edit:any, initial: Post | null}> = ({edit, initial}) =
         id : initial?.id || ''
     });
 
-    function editPost(e : ChangeEvent<HTMLInputElement>) {
+    function editPost (e : ChangeEvent<HTMLButtonElement>){
         e.preventDefault();
 
         const newPost = {
