@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import '../src/styles/App.css'
+import './styles/App.scss'
 import PostList from "./components/PostList";
 import PostForm from "./components/PostForm";
 import PostFilter from "./components/PostFilter";
